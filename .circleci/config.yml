@@ -39,7 +39,7 @@ jobs:
       - deploy:
           name: Publish application to Docker Hub
           command: |
-            docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+            echo "$DOCKER_HUB_PWD" | docker login --username $DOCKER_HUB_USER_ID --password-stdin
             docker image build -t fitter-happier-docker web
             docker tag fitter-happier-docker $DOCKER_HUB_USER_ID/fitter-happier-docker:$CIRCLE_SHA1
             docker tag fitter-happier-docker $DOCKER_HUB_USER_ID/fitter-happier-docker:latest
