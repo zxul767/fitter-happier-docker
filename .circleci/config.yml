@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: cimg/base:2020.01
 
-    working_directory: ~/repo
+    working_directory: ~/src
 
     steps:
       - checkout
@@ -32,6 +32,9 @@ jobs:
           destination: test-reports
 
   publish-image:
+    docker:
+      - image: cimg/base:2020.01
+
     steps:
       - checkout
 
