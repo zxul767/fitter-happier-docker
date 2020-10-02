@@ -32,9 +32,11 @@ jobs:
           destination: test-reports
 
   publish-image:
-    machine: true
     steps:
       - checkout
+
+      - setup_remote_docker:
+          version: 18.06.0-ce
 
       - deploy:
           name: Publish application to Docker Hub
