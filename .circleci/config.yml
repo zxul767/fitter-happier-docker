@@ -25,7 +25,7 @@ jobs:
           name: run tests
           command: |
             docker image build -t fitter-happier-docker web
-            docker container run -d fitter-happier-docker python -m unittest discover web
+            docker container run fitter-happier-docker python -m unittest
 
       - store_artifacts:
           path: test-reports
