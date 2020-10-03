@@ -25,9 +25,6 @@ jobs:
   publish-image:
     docker:
       - image: cimg/base:2020.01
-        auth:
-          username: $DOCKER_HUB_USER_ID
-          password: $DOCKER_HUB_PWD
 
     steps:
       - checkout
@@ -38,6 +35,7 @@ jobs:
       - deploy:
           name: Publish application to Docker Hub
           command: |
+            echo "$DOCKER_HUB_PWD" | docker login --username $DOCKER_HUB_USER_ID --password-stdin
             docker image build -t fitter-happier-docker web
             docker tag fitter-happier-docker $DOCKER_HUB_USER_ID/fitter-happier-docker:$CIRCLE_SHA1
             docker tag fitter-happier-docker $DOCKER_HUB_USER_ID/fitter-happier-docker:latest
